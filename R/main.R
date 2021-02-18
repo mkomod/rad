@@ -12,4 +12,7 @@ Rcpp::sourceCpp("../src/example_2.cpp", rebuild=T, verbose=T)
 example_2()
 
 
-
+# Example 3
+# f(x) = Norm(x; mu, sigma^2)
+Rcpp::sourceCpp("../src/example_3.cpp", rebuild=T, verbose=T)
+example_3(xp=5, mu=5, sigma=1)
