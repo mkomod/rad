@@ -4,9 +4,10 @@
 template <class T> T f(const T &x, const CPPAD_TESTVECTOR(double) a)
 {
     // exp(3x_1 + 4 + x_2^2)
-    return (1.0 / CppAD::sqrt(2 * PI * a[1])) *
+    return (1.0 / CppAD::sqrt(2 * PI * a[1] * a[1])) *
 	CppAD::exp(- 1/(2*a[1]*a[1]) * (x-a[0]) * (x-a[0]));
 }
+
 
 // [[Rcpp::export]]
 double example_3(double xp, double mu=0, double sigma=1)
