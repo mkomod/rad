@@ -9,7 +9,7 @@ template <class T> T f(const T &x, const CPPAD_TESTVECTOR(double) a)
 }
 
 // [[Rcpp::export]]
-void example_3(double xp, double mu=0, double sigma=1)
+double example_3(double xp, double mu=0, double sigma=1)
 {
     CPPAD_TESTVECTOR(double) a(2);
     a[0] = mu; a[1] = sigma;
@@ -26,5 +26,6 @@ void example_3(double xp, double mu=0, double sigma=1)
     x[0] = xp;
     std::vector<double> res = f_ad.Jacobian(x);
 
-    Rcpp::Rcout << "f/dx(" << xp << ") = " << res[0] << "\n";
+    // Rcpp::Rcout << "f/dx(" << xp << ") = " << res[0] << "\n";
+    return res[0];
 }
