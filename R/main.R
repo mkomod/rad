@@ -15,6 +15,19 @@ example_2()
 # Example 3
 # f(x) = Norm(x; mu, sigma^2)
 Rcpp::sourceCpp("../src/example_3.cpp", rebuild=T, verbose=T)
+f.d <- function(x, mu, sigma) {
+- x * exp(- x^2 / (2 * sigma^2) ) / (sigma^3 * sqrt(2 * pi))
+}
 example_3(xp=5, mu=0, sigma=1)
-microbenchmark::microbenchmark(example_3(0,0,1), dnorm(0), times=1e3)
-# About 10 times slower than dnorm
+microbenchmark::microbenchmark(example_3(0,0,1), f.d(0, 0, 1), times=1e3)
+# About 10 times slower than using analytical sol
+
+
+# Example 4
+# We use adept, a different library to compute derivatives.
+Rcpp::sourceCpp("../src/example_4.cpp", rebuild=T, verbose=T)
+microbenchmark::microbenchmark(
+	example_3(x=5, mu=0.0, sigma=2), 
+	example_4(x=5, mu=0.0, sigma=2), times=100)
+# CppAD is about 2x faster
+
