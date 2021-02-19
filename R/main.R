@@ -15,4 +15,6 @@ example_2()
 # Example 3
 # f(x) = Norm(x; mu, sigma^2)
 Rcpp::sourceCpp("../src/example_3.cpp", rebuild=T, verbose=T)
-example_3(xp=5, mu=5, sigma=1)
+example_3(xp=5, mu=0, sigma=1)
+microbenchmark::microbenchmark(example_3(0,0,1), dnorm(0), times=1e3)
+# About 10 times slower than dnorm
