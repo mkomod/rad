@@ -31,3 +31,15 @@ microbenchmark::microbenchmark(
 	example_4(x=5, mu=0.0, sigma=2), times=100)
 # CppAD is about 2x faster
 
+
+# Example 5
+# Vector input, scalar output, Jacobian and Hessian
+Rcpp::sourceCpp("../src/example_5.cpp", rebuild=T, verbose=T)
+example_5(c(1,1))
+
+
+# Example 6
+# Using gradients in an optimisation routine such as CG (see: optim)
+Rcpp::sourceCpp("../src/example_6.cpp", rebuild=T, verbose=T)
+example_6(c(-1, 1))
+
